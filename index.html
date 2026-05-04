@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Per Caterina</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  min-height: 100vh;
+  background: #6b0000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, #a30000 0%, #6b0000 45%, #3a0000 100%);
+  z-index: 0;
+}
+
+.rose {
+  position: fixed;
+  font-size: 52px;
+  opacity: 0.18;
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 0 8px #ff4444);
+}
+.rose.tl { top: -10px; left: -10px; transform: rotate(-20deg); font-size: 80px; }
+.rose.tr { top: -10px; right: -10px; transform: rotate(20deg); font-size: 80px; }
+.rose.bl { bottom: -10px; left: -10px; transform: rotate(20deg) scaleX(-1); font-size: 72px; }
+.rose.br { bottom: -10px; right: -10px; transform: rotate(-20deg); font-size: 72px; }
+.rose.ml { top: 50%; left: -15px; transform: translateY(-50%) rotate(-10deg); opacity: 0.12; }
+.rose.mr { top: 50%; right: -15px; transform: translateY(-50%) rotate(10deg) scaleX(-1); opacity: 0.12; }
+
+.heart-float {
+  position: fixed;
+  color: #ff6666;
+  pointer-events: none;
+  z-index: 1;
+  animation: floatUp linear infinite;
+  opacity: 0;
+}
+@keyframes floatUp {
+  0%   { transform: translateY(0) scale(1); opacity: 0.6; }
+  100% { transform: translateY(-100vh) scale(0.4); opacity: 0; }
+}
+
+.card {
+  position: relative;
+  z-index: 10;
+  width: min(90vw, px);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,100,100,0.3);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 60px rgba(180,0,0,0.4), inset 0 0 30px rgba(255,50,50,0.04);
+}
+
+.top-hearts {
+  font-size: 1.4rem;
+  letter-spacing: 0.5em;
+  margin-bottom: 1.8rem;
+  color: #ff8888;
+  display: block;
+}
+
+.divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #ff6666, transparent);
+  margin: 1.5rem auto;
+}
+
+.testo {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.15rem, 4.5vw, 1.4rem);
+  color: #ffe0e0;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.bottom-rose {
+  font-size: 1.6rem;
+  margin-top: 1.8rem;
+  display: block;
+  letter-spacing: 0.4em;
+  opacity: 0.8;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+
+<span class="rose tl">🌹</span>
+<span class="rose tr">🌹</span>
+<span class="rose bl">🌹</span>
+<span class="rose br">🌹</span>
+<span class="rose ml">🌹</span>
+<span class="rose mr">🌹</span>
+
+<div class="card">
+  <span class="top-hearts">♥ ♥ ♥</span>
+  <div class="divider"></div>
+  <p class="testo" id="testo">
+    <!-- ✏️ SCRIVI QUI IL TUO TESTO -->
+    Cara Caterina,
+    Ho fatto questa paginetta per scriverti qualche riga per il nostro primo mese assieme e per rispondere alla lettera che mi hai scritto.
+    Alla fine della lettera mi hai detto che speravi che io potessi capire il tuo modo di dimostrare affetto, in questo mese ho fatto dei passi da gigante perchè con il tempo ho capito che non devo essere triste quando non mi rispondi ma devo essere felice quando lo fai, che sembra una cosa banale ma fidati che non lo è.
+    Non voglio scriverti troppe parole perchè preferirei dirtele dal vivo mangiando un buonissimo gelato,
+    Ti voglio un mondo di bene,
+    Nicola (o come dici te peluche)
+    ♡
+  </p>
+  <div class="divider"></div>
+  <span class="bottom-rose">🌹 🌹 🌹</span>
+</div>
+
+
+
+<div id="hearts-container"></div>
+
+<script>
+  const hc = document.getElementById('hearts-container');
+  const symbols = ['♥','♡','❤','🌹'];
+  for (let i = 0; i < 22; i++) {
+    const h = document.createElement('div');
+    h.className = 'heart-float';
+    h.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    h.style.left = (Math.random() * 100) + 'vw';
+    h.style.bottom = '0';
+    h.style.fontSize = (10 + Math.random() * 18) + 'px';
+    h.style.animationDuration = (7 + Math.random() * 10) + 's';
+    h.style.animationDelay = (Math.random() * 12) + 's';
+    hc.appendChild(h);
+  }
+
+
+</script>
+</body>
+</html>
